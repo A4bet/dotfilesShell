@@ -1,12 +1,24 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
+# Exit on errors
 set -e
 
 # Check for root privileges
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run as root!"
     exit 1
+fi
+
+echo "Detecting CPU vendor..."
+if grep -q "GenuineIntel" /proc/cpuinfo; then
+    CPU_UCODE="intel-ucode"
+    echo "Intel CPU detected. Installing intel-ucode..."
+elif grep -q "AuthenticAMD" /proc/cpuinfo; then
+    CPU_UCODE="amd-ucode"
+    echo "AMD CPU detected. Installing amd-ucode..."
+else
+    echo "Unknown CPU vendor! Skipping microcode installation..."
+    CPU_UCODE=""
 fi
 
 echo "Enabling ParallelDownloads in pacman.conf..."
@@ -18,7 +30,12 @@ pacman -Syu --noconfirm
 echo "Installing required packages..."
 pacman -S --noconfirm qtile lxappearance nitrogen thunar firefox vim neofetch fastfetch \
     alacritty picom ufw archlinux-wallpaper lightdm lightdm-gtk-greeter alsa-utils \
-    keepassxc intel-ucode flatpak pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd
+    keepassxc flatpak git pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd
+
+# Install CPU microcode if detected
+if [[ -n "$CPU_UCODE" ]]; then
+    pacman -S --noconfirm "$CPU_UCODE"
+fi
 
 echo "Enabling UFW (Uncomplicated Firewall)..."
 systemctl enable ufw
