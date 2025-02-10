@@ -18,7 +18,7 @@ pacman -Syu --noconfirm
 echo "Installing required packages..."
 pacman -S --noconfirm qtile lxappearance nitrogen thunar firefox vim neofetch fastfetch \
     alacritty picom ufw archlinux-wallpaper lightdm lightdm-gtk-greeter alsa-utils \
-    keepassxc intel-ucode flatpak git pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd
+    keepassxc intel-ucode flatpak pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd
 
 echo "Enabling UFW (Uncomplicated Firewall)..."
 systemctl enable ufw
