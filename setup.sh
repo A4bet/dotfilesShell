@@ -67,7 +67,7 @@ echo "Setting up Neovim (NvChad)..."
 git clone https://github.com/NvChad/starter "$CONFIG_DIR/nvim"
 
 echo "Cleaning up..."
-rm -rf $CONFIG_DIR/dotfiles
+rm -rf /tmp/dotfiles
 rm -rf $CONFIG_DIR/dotfiles/README.md
 
 echo "Installation complete. Rebooting now..."
