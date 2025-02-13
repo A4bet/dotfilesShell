@@ -59,16 +59,16 @@ git clone https://github.com/A4bet/dotfiles.git /tmp/dotfiles
 
 echo "Moving configuration files..."
 mv /tmp/dotfiles/* "$CONFIG_DIR/"
-mv /tmp/dotfiles/xbindkeysrc "/home/$SUDO_USER/.xbindkeysrc"
+mv $CONFIG_DIR/xbindkeysrc "/home/$SUDO_USER/.xbindkeysrc"
 rm -rf /etc/xdg/picom.conf
-mv /tmp/dotfiles/picom.conf /etc/xdg/picom.conf
+mv $CONFIG_DIR/picom.conf /etc/xdg/picom.conf
 
 echo "Setting up Neovim (NvChad)..."
 git clone https://github.com/NvChad/starter "$CONFIG_DIR/nvim"
 
 echo "Cleaning up..."
-rm -rf /tmp/dotfiles
-rm -rf /tmp/dotfiles/README.md
+rm -rf $CONFIG_DIR/dotfiles
+rm -rf $CONFIG_DIR/dotfiles/README.md
 
 echo "Installation complete. Rebooting now..."
 reboot
