@@ -45,17 +45,6 @@ echo "Modifying GRUB timeout settings..."
 sed -i 's/^GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
-echo "Installing YAY AUR helper..."
-if ! command -v yay &>/dev/null; then
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay
-    makepkg -si --noconfirm
-    cd ..
-    rm -rf /tmp/yay
-else
-    echo "YAY is already installed. Skipping..."
-fi
-yay -S i3lock-color --noconfirm
 echo "Enabling system services..."
 systemctl enable paccache.timer
 systemctl enable lightdm.service
