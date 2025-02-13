@@ -70,5 +70,4 @@ echo "Cleaning up..."
 rm -rf /tmp/dotfiles
 rm -rf $CONFIG_DIR/dotfiles/README.md
 
-echo "Installation complete. Rebooting now..."
-reboot
+echo "Installation complete."
