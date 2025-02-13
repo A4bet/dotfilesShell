@@ -11,3 +11,5 @@ cd dotfilesShell
 chmod +x setup.sh
 
 ./setup.sh
+
+>install yay & i3lock-color
