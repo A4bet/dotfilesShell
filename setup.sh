@@ -22,6 +22,7 @@ else
 fi
 
 echo "Enabling ParallelDownloads in pacman.conf..."
+sed -i 's/^greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 echo "Updating system packages..."
@@ -29,7 +30,7 @@ pacman -Syu --noconfirm
 
 echo "Installing required packages..."
 pacman -S --noconfirm qtile lxappearance nitrogen thunar firefox vim neofetch fastfetch \
-    alacritty picom ufw archlinux-wallpaper lightdm lightdm-gtk-greeter alsa-utils \
+    alacritty picom ufw archlinux-wallpaper lightdm lightdm-webkit2-greeter alsa-utils \
     keepassxc flatpak git pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd \
     rofi polybar imagemagick xorg-xdpyinfo
 
