@@ -30,7 +30,8 @@ pacman -Syu --noconfirm
 echo "Installing required packages..."
 pacman -S --noconfirm qtile lxappearance nitrogen thunar firefox vim neofetch fastfetch \
     alacritty picom ufw archlinux-wallpaper lightdm lightdm-gtk-greeter alsa-utils \
-    keepassxc flatpak git pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd rofi polybar
+    keepassxc flatpak git pacman-contrib xbindkeys flameshot ttf-jetbrains-mono-nerd \
+    rofi polybar imagemagick xorg-xdpyinfo
 
 # Install CPU microcode if detected
 if [[ -n "$CPU_UCODE" ]]; then
@@ -54,7 +55,7 @@ if ! command -v yay &>/dev/null; then
 else
     echo "YAY is already installed. Skipping..."
 fi
-
+yay -S i3lock-color --noconfirm
 echo "Enabling system services..."
 systemctl enable paccache.timer
 systemctl enable lightdm.service
